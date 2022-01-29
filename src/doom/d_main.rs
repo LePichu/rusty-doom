@@ -1,4 +1,8 @@
 
 
-pub fn D_DoomMain_Interval() {
+/*
+ *  Main Function
+ * */
+pub fn d_DoomMain() {
+
 }
