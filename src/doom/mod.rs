@@ -1,5 +1,5 @@
 mod d_main;
 
 pub fn setup() {
-    d_main::d_DoomMain();
+    d_main::D_DoomMain();
 }
