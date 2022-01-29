@@ -1,7 +1,13 @@
+use super::m_argv;
+
 pub fn L_SetupConsoleMasks() {
-    let (mut p, mut i) = (0, 0);
-    let &mut cena = &mut "ICWEFDA";
+    let (mut p, mut i) = (false, 0);
+    let cena = "ICWEFDA";
     let mut pos = 0;
+    p = m_argv::M_CheckParm('r');
+    if p {
+        
+    }
 }
 
 pub fn D_DoomMainSetup() {
