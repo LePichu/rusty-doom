@@ -1,11 +1,13 @@
 extern crate libc;
+use super::d_deh;
 use super::m_argv;
 
 static mut nomonsters: bool = false;
 static mut fastparm: bool = false;
 static mut respawnparm: bool = false;
+static mut forceOldBsp: bool = false;
 
-static standard_iwads: &'static [&'static str] = &[
+const standard_iwads: &[&str] = &[
     "doom2f.wad",
     "doom2.wad",
     "plutonia.wad",
@@ -23,7 +25,7 @@ static standard_iwads: &'static [&'static str] = &[
     "bfgdoom.wad",
 ];
 
-pub fn D_DoomMainSetup() {
+unsafe fn D_DoomMainSetup() {
     let (mut p, mut slot) = (0, 0);
 
     let mut rsp_found = true;
@@ -38,14 +40,21 @@ pub fn D_DoomMainSetup() {
         }
     }
 
+    if m_argv::M_CheckParm("-forceoldbsp") > 0 {
+        forceOldBsp = true;
+    }
+
+    d_deh::D_BuildBEXTables();
 }
 
-pub fn D_DoomLoop() {}
+unsafe fn D_DoomLoop() {}
 
 /*
  *  Main Function
  * */
 pub fn D_DoomMain() {
-    D_DoomMainSetup();
-    D_DoomLoop();
+    unsafe {
+        D_DoomMainSetup();
+        D_DoomLoop();
+    }
 }
